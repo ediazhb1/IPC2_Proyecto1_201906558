@@ -1,6 +1,7 @@
 from archivos import archivos
-from ListaSimple import ListaSimple
+from ListaSimplePos import ListaSimplePos
 analisis = archivos()
+positions = ListaSimplePos()
 
 def imprimir():
     print("")
@@ -13,8 +14,6 @@ def imprimir():
     print("6. Salir")
 
 def menu():
-    ListaTerrenos2 = ListaSimple()
-
     while True:
         imprimir()
         try:
@@ -36,7 +35,8 @@ def menu():
                 if entrada_usuario == 2:
                     print("*Opción Procesar terreno")
                     analisis.TerrenosEnLista()
-
+                    analisis.PosicionesEnLista()
+                    
                 if entrada_usuario == 3:
                     print("*Opción Archivo de salida")
 
@@ -49,7 +49,10 @@ def menu():
                     print("4to Semestre")
 
                 if entrada_usuario == 5:
-                    print("*Generar gráfica")                                 
+                    print("*Generar gráfica")
+                    analisis.TerrenosEnLista()
+                    SeleTerreno = str(input("> Ingrese el nombre del terreno a graficar: "))       
+                    analisis.GraficarReporte(SeleTerreno)                       
 
             else:
                 print('Error, solo de aceptan numeros del 1 al 6')
