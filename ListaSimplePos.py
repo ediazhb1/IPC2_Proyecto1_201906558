@@ -1,13 +1,13 @@
-from Terreno import Terreno
+from Posiciones import Posiciones
 
-class ListaSimple():
+class ListaSimplePos():
     def __init__(self):
         self.inicio = None #Nodo inicial de la lista
         self.fin = None #Nodo final de la lista
         self.size = 0 #Cantidad de nodos
 
-    def crearTerreno(self, nombre, posinicial, posfinal):
-        nuevo = Terreno(nombre, posinicial, posfinal) #Agregando data al nodo
+    def crearPosiciones(self, posx, posy, combustible):
+        nuevo = Posiciones(posx, posy, combustible) #Agregando data al nodo
         self.size += 1 #El nodo se llena y aumenta el tamaño
         if self.inicio is None: #Verifica si el nodo tiene asignado un nodo inicial
             self.inicio = nuevo
@@ -16,17 +16,15 @@ class ListaSimple():
             while tmp.siguiente is not None:
                 tmp = tmp.siguiente
             tmp.siguiente = nuevo
+            self.fin = tmp.siguiente
 
-    def mostrarTerreno(self):
+    def mostrarPosiciones(self):
         tmp = self.inicio
         while tmp is not None:
-            print('Terreno:', tmp.nombre, '| Posición Inicial: ('+tmp.posinicial+")",'| Posición Final: ('+tmp.posfinal+")")
+            print('x =', tmp.posx, 'y ='+tmp.posy,'Combustible ='+tmp.combustible)
             tmp = tmp.siguiente
-        
-    def buscarTerreno(self, nombre):
+
+    def mostrarCombu(self):
         tmp = self.inicio
         while tmp is not None:
-            if tmp.nombre == nombre:
-                return tmp
-            tmp = tmp.siguiente
-        return None
+            return tmp
