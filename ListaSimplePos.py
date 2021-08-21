@@ -17,14 +17,6 @@ class ListaSimplePos():
                 tmp = tmp.siguiente
             tmp.siguiente = nuevo
             self.fin = tmp.siguiente
-
-    def mostrarPosiciones(self):
-        tmp = self.inicio
-        while tmp is not None:
-            print('x =', tmp.posx, 'y ='+tmp.posy,'Combustible ='+tmp.combustible)
-            tmp = tmp.siguiente
-
-    def mostrarCombu(self):
-        tmp = self.inicio
-        while tmp is not None:
-            return tmp
+    
+    def PosicionComienzo(self,inicial):
+        pass
