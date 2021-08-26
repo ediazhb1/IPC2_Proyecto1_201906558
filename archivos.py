@@ -24,7 +24,7 @@ class archivos():
                 for itemsyf in posini.iter("y"):
                     print("Posición yf del r2e2:",itemsyf.text)
 
-            ListaTerrenos.crearTerreno(elemento.attrib['nombre'],itemsxi.text+","+itemsyi.text,itemsxf.text+","+itemsyf.text) 
+            ListaTerrenos.crearTerreno(elemento.attrib['nombre'],itemsxi.text,itemsyi.text,itemsxf.text,itemsyf.text) 
             for combu in elemento.iter("posicion"):
                 conexion = ListaTerrenos.buscarTerreno(elemento.attrib['nombre'])
                 conexion.lista_posiciones.crearPosiciones(combu.attrib['x'],combu.attrib['y'],combu.text)  
@@ -36,42 +36,44 @@ class archivos():
     def TerrenosEnLista(self):
         ListaTerrenos.mostrarTerreno()
 
-    def PosicionesEnLista(self):     
-        prueba = ListaTerrenos.buscarTerreno("terreno1")
-        a = prueba.lista_posiciones.inicio
-        b = prueba.lista_posiciones.fin
-
-        while a is not None:
-            #print(a.combustible)
-            print(a.posy,b.posy)
-            a = a.siguiente
-
     def GraficarReporte(self,SeleTerreno):
         try:
             x = ListaTerrenos.buscarTerreno(SeleTerreno)
+            inicios = x.lista_posiciones.inicio
+            fines = x.lista_posiciones.fin
+            
             print("*Graficando el Terreno:",x.nombre+"...")
             print("Escribiendo el archivo .dot...")
             
             archivos = open(SeleTerreno+".dot","w")
             archivos.write("digraph G{\r\n" + 
             "label=<\r\n" + 
-            "<TABLE border=\"5\" cellspacing=\"10\" cellpadding=\"10\" style=\"rounded\">\r\n" + 
-            "<TR><TD border=\"1\">00</TD>\r\n" + 
-            "<TD border=\"1\">01</TD>\r\n" + 
-            "<TD border=\"1\">02</TD>\r\n" + 
-            "<TD border=\"1\">03</TD>\r\n" + 
-            "</TR>\r\n" + 
-            "<TR><TD border=\"1\">10</TD>\r\n" + 
-            "<TD border=\"1\">11</TD>\r\n" + 
-            "<TD border=\"1\">12</TD>\r\n" + 
-            "<TD border=\"1\">13</TD>\r\n" + 
-            "</TR>\r\n" +    
-            "</TABLE>>;\r\n" + 
+            "<TABLE border=\"5\" cellspacing=\"5\" cellpadding=\"15\" style=\"rounded\">\r\n")
+
+            while inicios is not None:
+                if int(inicios.posy) == 1:
+                    archivos.write("<TR><TD border=\"1\">"+inicios.combustible+"</TD>\r\n")
+
+                if int(inicios.posy) != 1:
+                    archivos.write("<TD border=\"1\">"+inicios.combustible+"</TD>\r\n")
+
+                if inicios.posy == fines.posy:
+                    archivos.write("</TR>\r\n")
+                inicios = inicios.siguiente
+
+            archivos.write("</TABLE>>;\r\n" + 
             "}")
             archivos.close()
 
-            print("Renderizando dot a png")
+            print("Renderizando dot a png...")
             graphviz.render('dot', 'png',SeleTerreno+'.dot')
             print("Exito! Busque el gráfico con el nombre",SeleTerreno+'.dot')
         except:
             print("Error! ¿Ingreso correctamente el nombre? ¿Cargó el archivo?")
+
+    def algoritmoRuta(self, SeleTerreno1):
+        inifin = ListaTerrenos.buscarTerreno(SeleTerreno1)
+        inifin.lista_posiciones.PosicionComienzo(inifin.xo,inifin.yo,inifin.xf,inifin.yf)
+
+
+        

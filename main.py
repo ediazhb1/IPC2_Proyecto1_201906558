@@ -35,7 +35,8 @@ def menu():
                 if entrada_usuario == 2:
                     print("*Opción Procesar terreno")
                     analisis.TerrenosEnLista()
-                    analisis.PosicionesEnLista()
+                    SeleTerreno1 = str(input("> Ingrese el nombre del terreno para buscar ruta: "))
+                    analisis.algoritmoRuta(SeleTerreno1)
                     
                 if entrada_usuario == 3:
                     print("*Opción Archivo de salida")
