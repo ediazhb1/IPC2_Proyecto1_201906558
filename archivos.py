@@ -24,7 +24,7 @@ class archivos():
                 for itemsyf in posini.iter("y"):
                     print("Posición yf del r2e2:",itemsyf.text)
 
-            ListaTerrenos.crearTerreno(elemento.attrib['nombre'],itemsxi.text+","+itemsyi.text,itemsxf.text+","+itemsyf.text) 
+            ListaTerrenos.crearTerreno(elemento.attrib['nombre'],itemsxi.text,itemsyi.text,itemsxf.text,itemsyf.text) 
             for combu in elemento.iter("posicion"):
                 conexion = ListaTerrenos.buscarTerreno(elemento.attrib['nombre'])
                 conexion.lista_posiciones.crearPosiciones(combu.attrib['x'],combu.attrib['y'],combu.text)  
@@ -72,6 +72,8 @@ class archivos():
             print("Error! ¿Ingreso correctamente el nombre? ¿Cargó el archivo?")
 
     def algoritmoRuta(self, SeleTerreno1):
-        x = ListaTerrenos.buscarTerreno(SeleTerreno1)
+        inifin = ListaTerrenos.buscarTerreno(SeleTerreno1)
+        inifin.lista_posiciones.PosicionComienzo(inifin.xo,inifin.yo,inifin.xf,inifin.yf)
+
 
         
