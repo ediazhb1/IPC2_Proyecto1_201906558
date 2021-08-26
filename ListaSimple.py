@@ -6,8 +6,8 @@ class ListaSimple():
         self.fin = None #Nodo final de la lista
         self.size = 0 #Cantidad de nodos
 
-    def crearTerreno(self, nombre, posinicial, posfinal):
-        nuevo = Terreno(nombre, posinicial, posfinal) #Agregando data al nodo
+    def crearTerreno(self, nombre, xo,yo,xf,yf):
+        nuevo = Terreno(nombre, xo,yo,xf,yf) #Agregando data al nodo
         self.size += 1 #El nodo se llena y aumenta el tamaño
         if self.inicio is None: #Verifica si el nodo tiene asignado un nodo inicial
             self.inicio = nuevo
@@ -20,7 +20,7 @@ class ListaSimple():
     def mostrarTerreno(self):
         tmp = self.inicio
         while tmp is not None:
-            print('Terreno:', tmp.nombre, '| Posición Inicial: ('+tmp.posinicial+")",'| Posición Final: ('+tmp.posfinal+")")
+            print('Terreno:', tmp.nombre, '| Posición Inicial: ('+tmp.xo+","+tmp.yo+")",'| Posición Final: ('+tmp.xf+","+tmp.yf+")")
             tmp = tmp.siguiente
         
     def buscarTerreno(self, nombre):
