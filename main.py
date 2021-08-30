@@ -14,6 +14,7 @@ def imprimir():
     print("6. Salir")
 
 def menu():
+    SeleTerreno1 = ""
     while True:
         imprimir()
         try:
@@ -40,6 +41,7 @@ def menu():
                     
                 if entrada_usuario == 3:
                     print("*Opción Archivo de salida")
+                    analisis.algoritmoSalida(SeleTerreno1)
 
                 if entrada_usuario == 4:
                     print("*Opción Datos del estudiante")

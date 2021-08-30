@@ -6,7 +6,7 @@ ListaTerrenos = ListaSimple()
 
 class archivos():
     def __init__(self):
-        pass
+        self.posxo = ""
 
     def rutaxml(self,rxml):
         tree = ET.parse(rxml)
@@ -73,7 +73,10 @@ class archivos():
 
     def algoritmoRuta(self, SeleTerreno1):
         inifin = ListaTerrenos.buscarTerreno(SeleTerreno1)
-        inifin.lista_posiciones.PosicionComienzo(inifin.xo,inifin.yo,inifin.xf,inifin.yf)
+        inifin.lista_posiciones.PosicionComienzo(inifin.xo,inifin.yo,inifin.xf,inifin.yf)      
 
+    def algoritmoSalida(self, SeleTerreno1):
+        inifin2 = ListaTerrenos.buscarTerreno(SeleTerreno1)
+        inifin2.lista_posiciones.salida1(SeleTerreno1)
 
         
